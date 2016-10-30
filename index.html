@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas textPath</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Renders text along a path in a Canvas" />
+	<meta name="keywords" content="canvas, context, textpath, along" />
+
+	<script type="text/javascript" src="ctxtextpath.js"></script>
+
+	<style>
+		body { color:#369; } 
+		p { font-size: 1.5em; }
+		ol { margin:12px 0.5em;}
+		li { font-size: 1.5em; line-height: 60px; text-align:right; }
+		input { border: 10px solid #eee; color: #800; font-size: 1em; padding: 0 0.5em; width: 20em; }
+		canvas { border:10px solid #800; }
+	</style>
+</head>
+<body>
+	<a href="https://github.com/Viglino/Canvas-TextPath"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+	<h1>Canvas textPath</h1>
+	<p>
+		To render text along a path in a Canvas.<br/>
+		It adds extra functionality to the CanvasRenderingContext2D by extending its prototype.
+		<br/>
+		Text: <input type="text" placeholder="Text to render..." value="Text along the path" onkeyup="drawtext(this.value)" />
+	</p>
+	<ol style="float:left">
+		<li>align left</li>
+		<li>align center</li>
+		<li>align right</li>
+		<li>justify</li>
+		<li>overflow hidden</li>
+		<li>overflow ellipsis</li>
+		<li>overflow visible</li>
+	</ol>
+	<canvas id="myCanvas" width=500 height=500></canvas> 
+
+<script type="text/javascript">
+	var thePath = [80,20, 180,70, 300,50, 400,80];
+	var shortPath = [180,50, 200,60, 250,50, 300,70];
+
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+
+	function drawPath(path)
+	{	ctx.save();
+		ctx.strokeStyle = "#aaa";
+		ctx.lineWidth = 1;
+		ctx.beginPath();
+		ctx.moveTo(path[0],path[1]);
+		for (var i=2; i<path.length; i+=2)
+		{	ctx.lineTo(path[i],path[i+1]);
+		}
+		ctx.stroke();
+		ctx.restore();
+	}
+  
+	function drawtext(theText)
+	{	ctx.clearRect(0,0,1000,1000);
+
+		// Draw text along the path
+		ctx.font="20px Georgia";
+		// Use classic base line middle|top|bottom|alphabetic|hanging
+		ctx.textBaseline = "middle";
+		// fillStyle, for none: use "transparent"
+		ctx.fillStyle = "#a00";
+		// Text outline, for none: use lineWidth less than 0.1 (0 is not allowed)
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = "yellow";
+  
+		ctx.save();
+
+			drawPath(thePath);
+			ctx.textAlign = "left";
+			ctx.textPath(theText, thePath);
+  
+			ctx.translate(0,60);
+			drawPath(thePath);
+			ctx.textAlign = "center";
+			ctx.textPath(theText, thePath);
+  
+			ctx.translate(0,60);
+			drawPath(thePath);
+			ctx.textAlign = "right";
+			ctx.textPath(theText, thePath);
+
+			ctx.translate(0,60);
+			drawPath(thePath);
+			ctx.textJustify = true;
+
+		ctx.textPath(theText, thePath);
+
+		// Reset
+		ctx.restore();
+		ctx.save();
+
+			ctx.translate(0,240);
+			drawPath(shortPath);
+			ctx.textPath(theText, shortPath);
+  
+			ctx.translate(0,60);
+			drawPath(shortPath);
+			ctx.textOverflow = "ellipsis";
+			ctx.textPath(theText, shortPath);
+  
+			ctx.translate(0,60);
+			drawPath(shortPath);
+			ctx.textOverflow = "visible";
+			ctx.textPath(theText, shortPath);
+
+		ctx.restore();
+	}
+
+	drawtext("Text along the path");
+  
+</script>
+</body>
