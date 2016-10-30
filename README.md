@@ -41,14 +41,15 @@ window.onload = function() {
   ctx.lineTo(100,40);
   ctx.lineTo(190,60);
   ctx.stroke();
-  
+
   // Render text
   ctx.font = "24px Arial";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.lineWidth = 0.01;     // No outline
+  ctx.strokeStyle =  "white";
+  ctx.lineWidth = 3;
   ctx.textPath ("Hello world", [10,60, 100,40, 190,60]);
-}
+ }
 </script>
 ```
 The path is an Array of coordinates [x1,y1, x2, y2, etc.]
