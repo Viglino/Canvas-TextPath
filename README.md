@@ -54,6 +54,8 @@ window.onload = function() {
 ```
 The path is an Array of coordinates [x1,y1, x2, y2, etc.]
 
+![Text along the path](example.png?raw=true "Result")
+
 ## Properties
 
 Extra properties are added to the CanvasRenderingContext2D.
