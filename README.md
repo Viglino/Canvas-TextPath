@@ -1,16 +1,17 @@
 # [Canvas-TextPath](https://github.com/Viglino/Canvas-TextPath/)
 
 Adds extra functionality to the CanvasRenderingContext2D to draw text along a path.
+
 Check out the [demo](https://viglino.github.io/Canvas-TextPath/)!
 
 ## How it runs?
 
 As SVG does support text along paths, canvas doesn't have such native support. 
-This contribution tries to fill the lack and gives you a textPath function to use with a CanvasRenderingContext2D.
+This contribution tries to fill the lack and gives you a `textPath` function to use with a CanvasRenderingContext2D.
 The method writes one character at a time rotated and scaled according to the path.
 
 NOTE: this extends the CanvasRenderingContext2D prototype. 
-It adds a `textPath` function to draw text along a list of coordinates.
+It adds a `textPath` function to draw text along a path (as an Array of coordinates).
 It adds `textOverflow`, `textJustify` and `textStrokeMin` properties to CanvasRenderingContext2D.
 
 It support native options include text alignment (left, center and right) and baseline positionning.
