@@ -78,4 +78,4 @@ If you specify a `lineWitdth` less than 0.1 no stroke is drawn. Use a `fillStyle
 
 ## License
 
-[MIT License](https://github.com/lukehaas/css-loaders/blob/step2/LICENSE)
+[MIT License](https://github.com/Viglino/Canvas-TextPath/blob/master/LICENSE)
