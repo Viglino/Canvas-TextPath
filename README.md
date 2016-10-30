@@ -1,4 +1,4 @@
-# [Canvas-TextPath](https://github.com/Viglino/Canvas-TextPath/
+# [Canvas-TextPath](https://github.com/Viglino/Canvas-TextPath/)
 
 Adds extra functionality to the CanvasRenderingContext2D to draw text along a path.
 Check out the [demo](https://viglino.github.io/Canvas-TextPath/)!
