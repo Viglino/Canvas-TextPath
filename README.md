@@ -32,13 +32,42 @@ Then begin to draw in the canvas
 window.onload = function() {
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
-  ctx.font = "30px Arial";
-  ctx.txtAlign = "center";
+  
+  // Draw support path
+  ctx.strokeStyle = "red";
+  ctx.lineWidth=2;
+  ctx.moveTo(10,60);
+  ctx.lineTo(100,40);
+  ctx.lineTo(190,60);
+  ctx.stroke();
+  
+  // Render text
+  ctx.font = "24px Arial";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.lineWidth = 0.01;     // No outline
   ctx.textPath ("Hello world", [10,60, 100,40, 190,60]);
 }
 </script>
 ```
-The path is an Array of coordinates x1,y1, x2, y2, etc.
+The path is an Array of coordinates [x1,y1, x2, y2, etc.]
+
+## Properties
+
+Extra properties are added to the CanvasRenderingContext2D.
+
+* `textOverflow` string: specifies what happens if text overflows the path, default "" (means hidden). Possible values are 'visible' to show the text, 'ellipsis' to show "..." or a string that will be displayed at the end of the truncated text. Use "" to hide overflow content.
+* `textJustify` boolean: true for justifying text, defaul false. If false, take the textAlign propertie to align text.
+* `textStrokeMin` number: the minimum size (in pixel) of the path underneath the text is not displayed.
+
+If you specify a `lineWitdth` less than 0.1 no stroke is drawn. Use a `fillStyle` as 'transparent' to not fill the text
+
+```javascript
+  ctx.textOverflow = "ellipsis";
+  ctx.textJustify = true;
+  ctx.textStrokeMin = 40;
+  ctx.textPath ("Hello world", [10,60, 100,40, 190,60]);
+```
 
 
 ## License
