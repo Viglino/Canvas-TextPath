@@ -2,6 +2,8 @@
 
 Adds extra functionality to the CanvasRenderingContext2D to draw text along a path.
 
+![Text along the path](example.png?raw=true "Result")
+
 Check out the [demo](https://viglino.github.io/Canvas-TextPath/)!
 
 ## How it runs?
